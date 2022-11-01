@@ -1,14 +1,24 @@
 import React from "react";
 import { NativeBaseProvider, Center, Text } from "native-base";
 import { THEME } from './src/styles/theme'
+import { Loading } from './src/components/Loading'
+import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@expo-google-fonts/roboto'
+import { SignIn } from './src/screens/SignIn'
 
 
 export default function App() {
+
+  const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold })
+
   return (
     <NativeBaseProvider theme={THEME}>
-      <Center flex={1} bgColor="gray.900" alignItems="center" justifyContent="center">
-        <Text color="yellow.500" fontSize={24}>Hello World</Text>
-      </Center>
+
+      {!fontsLoaded ?
+        <Loading />
+        :
+        <SignIn />
+      }
+
     </NativeBaseProvider>
   );
 }
