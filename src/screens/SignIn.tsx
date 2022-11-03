@@ -3,8 +3,10 @@ import React from 'react'
 import Logo from '../assets/logo.svg'
 import { Button } from '../components/Button'
 import { Fontisto } from '@expo/vector-icons';
+import { useAuth } from '../hooks/useAuth'
 
 export function SignIn() {
+    const { signIn, user } = useAuth()
 
     return (
         <Center flex={1} bgColor="gray.900" alignItems="center" justifyContent="center" p={7}>
@@ -14,6 +16,7 @@ export function SignIn() {
                 type="SECONDARY"
                 leftIcon={<Icon as={Fontisto} name="google" size="md" color="white" />}
                 mt={12}
+                onPress={signIn}
             />
 
             <Text
